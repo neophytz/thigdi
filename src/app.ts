@@ -1,21 +1,9 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
 import { Application } from "express";
 import { IRoute } from './types';
 
-/**
- * 0. 
- * 1. middleware configuration?
- * - bodyparser?
- * - cors?
- * 
- * 2. routes
- * - 
- * 
- * 3. database connection?
- * - 
- * 
- * 4. Export that application, so that it can be used in server.ts file.
-*/
 
 /**
  * express application
@@ -61,4 +49,26 @@ export class App {
             console.log(`Server started on port ${this.port}`)
         })
     }
+
+    /**
+     * Creates a connection to a MongoDB instance using mongoose
+     * @param uri MongoDB connection string
+    */
+    public mongoDB(uri: string) {
+        const connect = () => {
+            mongoose.set('strictQuery', false);
+            mongoose.connect(uri).then(() => {
+                console.log("DB connected successfully.")
+            }).catch((error: Error) => {
+                console.log(error);
+                return process.exit(1);
+            });
+        };
+
+        connect();
+
+        // event listener.
+        mongoose.connection.on("disconnected", connect);
+    }
+
 }
