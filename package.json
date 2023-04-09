@@ -1,0 +1,30 @@
+{
+  "name": "thigdi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon",
+    "build": "rimraf ./build && tsc",
+    "start": "npm run build && node build/server.js"
+  },
+  "author": "Sachin duhan",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/http-status-codes": "^1.2.0",
+    "@types/node": "^18.15.11",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "http-status-codes": "^2.2.0",
+    "mongoose": "^7.0.3",
+    "ts-node": "^10.9.1"
+  }
+}
