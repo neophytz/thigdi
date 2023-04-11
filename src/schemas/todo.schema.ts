@@ -1,9 +1,15 @@
 import { Document, Schema, model } from "mongoose";
+import z from 'zod';
 
-export interface ITodo extends Document {
-    title: string,
-    isCompleted: boolean,
-}
+const todoValidator = z.object({
+    title:z.string().trim().toLowerCase().min(3, "less than 3 chars").max(100),
+    isCompleted:z.boolean().optional().default(false),
+    // createdAt:z.date().optional().default(new Date())
+})
+
+type Todo = z.infer<typeof todoValidator>
+
+export interface ITodo extends Todo, Document {}
 
 // skeleton + rules.
 const TodoSchema = new Schema<ITodo>({

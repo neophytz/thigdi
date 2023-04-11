@@ -1,7 +1,7 @@
 // this can be little hard to understand, but if your OOPS concepts are solid, it's cake walk.
 import { StatusCodes } from "http-status-codes";
 import { BaseController } from "./base.controller";
-import { Model, Document } from 'mongoose';
+import { Model } from 'mongoose';
 import { Response } from "express";
 
 /**
