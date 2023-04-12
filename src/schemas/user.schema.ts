@@ -1,10 +1,14 @@
 import { Document, Schema, model } from "mongoose";
+import z from 'zod';
 
-export interface IUser extends Document {
-    name: string,
-    email: string,
-    phone: number
-}
+export const userValidator = z.object({
+    name:z.string().trim().toLowerCase().min(3, "Name should be greater than or equal to 3 chars.").max(100, "Name should be lesser than or equal to 100 chars."),
+    email:z.string().trim().toLowerCase().email("Please provide a valid email").min(3, "Email should be greater than or equal to 3 chars.").max(100, "Email should be lesser than or equal to 100 chars."),
+    phone: z.number()
+})
+
+type User = z.infer<typeof userValidator>
+export interface IUser extends User, Document {}
 
 // skeleton + rules.
 const UserSchema = new Schema<IUser>({

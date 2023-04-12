@@ -1,10 +1,9 @@
 import { Document, Schema, model } from "mongoose";
 import z from 'zod';
 
-const todoValidator = z.object({
-    title:z.string().trim().toLowerCase().min(3, "less than 3 chars").max(100),
+export const todoValidator = z.object({
+    title:z.string().trim().toLowerCase().min(3, "title should be greater than or equal to 3 chars.").max(100, "title should be less than or equal to 100 chars."),
     isCompleted:z.boolean().optional().default(false),
-    // createdAt:z.date().optional().default(new Date())
 })
 
 type Todo = z.infer<typeof todoValidator>
