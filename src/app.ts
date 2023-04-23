@@ -25,7 +25,7 @@ export class App {
         // 1. create application on a port.!!
         // 2. apply middleware -> bodyParser(), cors(), helmet()
         // 3. apply routes.
-        this.app.get(this.apiPath, (req, res) => {
+        this.app.get('/', (req, res) => {
             return res.status(StatusCodes.ACCEPTED).json({
                 status:"working",
                 alive:true
